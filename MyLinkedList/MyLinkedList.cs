@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MyLinkedList
 {
-    class MyLinkedList<T>
+    public class MyLinkedList<T>
     {
         public Node<T> Head = null;
         public Node<T> Current = null;
@@ -22,6 +23,19 @@ namespace MyLinkedList
             }            
         }
 
+        public List<T> AsList()
+        {            
+            Current = Head;            
+            var endList = new List<T>();
+            while (Current != null)
+            {               
+                endList.Add(Current.Value);
+                if (Current.Next == null) break;
+                Current = Current.Next;                     
+            }
+            return endList;
+        }
+
         public int GetSize()
         {
             var hasNextNode = true;
@@ -34,6 +48,22 @@ namespace MyLinkedList
                 count++;                
             }   
             return count;
+        }
+
+        public T GetByIndex(int index)
+        {
+            var count = 0;
+            Current = Head;
+            while (true)
+            {
+                if (Current == null)                
+                    throw new IndexOutOfRangeException("Index Out Of Range.");                
+                if (count == index)
+                    return Current.Value;
+                Current = Current.Next;
+                count++;
+            }
+            //return Current.Value;
         }
 
         public void DisplayAll()
