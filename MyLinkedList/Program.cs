@@ -16,8 +16,12 @@ namespace MyLinkedList
             LinkedList.Add("Psa");
             LinkedList.Add("i");
             LinkedList.Add("Kota");
-            LinkedList.DisplayAll();
+            foreach (var item in LinkedList.AsList())
+            {
+                Console.WriteLine(item);
+            }
             Console.WriteLine(LinkedList.GetSize());
+            LinkedList.GetByIndex(0);
             Console.ReadLine();
         }
     }
